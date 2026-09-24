@@ -1,2 +1,6 @@
+.vs/
 bin/
 obj/
+README.md
+.env
+.example
