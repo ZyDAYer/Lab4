@@ -3,7 +3,11 @@ bin/
 obj/
 README.md
 .env
+<<<<<<< HEAD
 .example
 .env.example
 IsLabApp.Tests/bin/
 IsLabApp.Tests/obj/
+=======
+.example
+>>>>>>> 36c0bbd50cc97298911b4cdd42efce0bf361a54e

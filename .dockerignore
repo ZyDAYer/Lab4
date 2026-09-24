@@ -7,6 +7,7 @@ obj/
 *.user
 .git/
 .gitignore
+<<<<<<< HEAD
 .github/
 README.md
 IsLabApp.zip
@@ -15,3 +16,7 @@ IsLabApp.sln
 docker-compose.yml
 .env
 .env.example
+=======
+README.md
+IsLabApp.zip
+>>>>>>> 36c0bbd50cc97298911b4cdd42efce0bf361a54e

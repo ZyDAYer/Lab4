@@ -18,9 +18,12 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+<<<<<<< HEAD
 // ============================================================
 // Задание 2. Стандартный шаблонный эндпоинт /weatherforecast
 // ============================================================
+=======
+>>>>>>> 36c0bbd50cc97298911b4cdd42efce0bf361a54e
 var summaries = new[]
 {
     "Freezing", "Bracing", "Chilly", "Cool", "Mild",
@@ -41,11 +44,16 @@ app.MapGet("/weatherforecast", () =>
 })
 .WithName("GetWeatherForecast");
 
+<<<<<<< HEAD
 // ============================================================
 // Задание 3. Диагностические эндпоинты /health и /version
 // ============================================================
 
 // GET /health -> { "status": "ok", "timestamp": "..." }
+=======
+//Диагностические эндпоинты /health и /version
+
+>>>>>>> 36c0bbd50cc97298911b4cdd42efce0bf361a54e
 app.MapGet("/health", () =>
 {
     return Results.Ok(new
@@ -70,12 +78,17 @@ app.MapGet("/version", (IConfiguration config) =>
 })
 .WithName("GetVersion");
 
+<<<<<<< HEAD
 // ============================================================
 // Задание 4. Прикладной API "Заметки" (CRUD в памяти)
 // ============================================================
 
 // Хранилище в памяти. ConcurrentDictionary — чтобы безопасно работать
 // с несколькими одновременными запросами.
+=======
+//Прикладной API "Заметки"
+
+>>>>>>> 36c0bbd50cc97298911b4cdd42efce0bf361a54e
 var notes = new ConcurrentDictionary<int, Note>();
 var nextId = 0;
 
@@ -145,9 +158,13 @@ app.MapDelete("/api/notes/{id:int}", (int id) =>
 })
 .WithName("DeleteNote");
 
+<<<<<<< HEAD
 // ============================================================
 // Задание 5. Заготовка под MS SQL Server: /db/ping
 // ============================================================
+=======
+// Заготовка под MS SQL Server: /db/ping
+>>>>>>> 36c0bbd50cc97298911b4cdd42efce0bf361a54e
 
 // GET /db/ping — пробует подключиться к БД по строке подключения
 // ConnectionStrings:Mssql из appsettings.json. На этом этапе SQL Server
@@ -193,13 +210,19 @@ app.MapGet("/db/ping", async (IConfiguration config) =>
 
 app.Run();
 
+<<<<<<< HEAD
 // Требуется для шаблонного /weatherforecast
+=======
+>>>>>>> 36c0bbd50cc97298911b4cdd42efce0bf361a54e
 record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
 {
     public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
 }
+<<<<<<< HEAD
 
 // Делаем неявный класс Program публичным и частичным, чтобы тестовый
 // проект мог подключить приложение через WebApplicationFactory<Program>
 // (см. IsLabApp.Tests).
 public partial class Program { }
+=======
+>>>>>>> 36c0bbd50cc97298911b4cdd42efce0bf361a54e
