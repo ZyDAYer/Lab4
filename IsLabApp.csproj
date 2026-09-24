@@ -6,6 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <InvariantGlobalization>true</InvariantGlobalization>
     <UserSecretsId>b7f1a1e6-2f3a-4a3b-9d1e-2b6c9a1e4f10</UserSecretsId>
+	  <IsTestProject>false</IsTestProject>
   </PropertyGroup>
 
   <ItemGroup>
