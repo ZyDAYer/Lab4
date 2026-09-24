@@ -1,0 +1,9 @@
+.vs/
+bin/
+obj/
+README.md
+.env
+.example
+.env.example
+IsLabApp.Tests/bin/
+IsLabApp.Tests/obj/

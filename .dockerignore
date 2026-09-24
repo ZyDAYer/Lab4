@@ -1,0 +1,17 @@
+bin/
+obj/
+**/bin/
+**/obj/
+.vs/
+.vscode/
+*.user
+.git/
+.gitignore
+.github/
+README.md
+IsLabApp.zip
+IsLabApp.Tests/
+IsLabApp.sln
+docker-compose.yml
+.env
+.env.example

@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "IsLabApp.Tests": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:61266;http://localhost:61267"
+    }
+  }
+}

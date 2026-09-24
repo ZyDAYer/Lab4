@@ -1,0 +1,57 @@
+services:
+
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: mssql
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "${MSSQL_SA_PASSWORD}"
+    volumes:
+      - mssql-data:/var/opt/mssql
+    networks:
+      - is-net
+    # Порт наружу не публикуем — приложению достаточно видеть mssql
+    # по имени сервиса внутри сети compose (Server=mssql,1433).
+    healthcheck:
+      test: >
+        /opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P "$$MSSQL_SA_PASSWORD" -C -Q "SELECT 1" -b -o /dev/null
+        || /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P "$$MSSQL_SA_PASSWORD" -Q "SELECT 1" -b -o /dev/null
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
+    restart: unless-stopped
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    # Если образ isapp:lab8 уже собран отдельно (docker build -t isapp:lab8 .),
+    # docker compose переиспользует секцию build только при `docker compose build`
+    # / `up --build`; для обычного `docker compose up` уже собранный образ
+    # с этим именем и тегом будет использован как есть.
+    image: isapp:lab8
+    container_name: isapp
+    environment:
+      ASPNETCORE_URLS: "http://0.0.0.0:8080"
+      ASPNETCORE_ENVIRONMENT: "Production"
+      App__Name: "IsLabApp"
+      App__Version: "${APP_VERSION:-0.1.0-lab8}"
+      ConnectionStrings__Mssql: "Server=mssql,1433;Database=IsLabDb;User Id=sa;Password=${MSSQL_SA_PASSWORD};TrustServerCertificate=True;"
+    depends_on:
+      mssql:
+        condition: service_healthy
+    ports:
+      # Наружу торчит только 127.0.0.1:5000 — например, для Nginx на хосте.
+      # Внутри контейнера приложение слушает 8080.
+      - "127.0.0.1:5000:8080"
+    networks:
+      - is-net
+    restart: unless-stopped
+
+volumes:
+  mssql-data:
+
+networks:
+  is-net:
+    driver: bridge
